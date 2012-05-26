@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<config>
+ <propel>
+  <datasources default="persistence">
+   <datasource id="persistence">
+    <adapter>mysql</adapter>
+    <connection>
+     <phptype>mysql</phptype>
+     <database>persistence</database>
+     <hostspec>localhost</hostspec>
+     <username>phpuser</username>
+     <password>uJvQadbYwcBc3W3J</password>
+    </connection>
+   </datasource>
+  </datasources>
+ </propel>
+</config>

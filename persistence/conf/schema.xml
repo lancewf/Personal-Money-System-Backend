@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+
+<database name="persistence" defaultIdMethod="native">
+    
+    <table name="user"  description="a user to the system">
+        <column name="id" type="BIGINT" primaryKey="true" required="true" description="facebook id"/>
+    </table>
+    
+    <table name="allotted"  description="a user to the system">
+        <column name="key" type="integer" primaryKey="true" autoIncrement="true" required="true" description="user Id and cookie"/>
+        <column name="user_id" type="BIGINT" required="true" description="user Id"/>
+        <column name="startdate" type="timestamp" required="true" description="date time in line"/>
+        <column name="enddate" type="timestamp" required="true" description="date time in line"/>
+        <column name="billtype_key" type="integer" required="true" description="Foreign Key for billtype"/>
+        <column name="amount" type="DOUBLE" required="true" description="The amount allotted"/>
+        <foreign-key foreignTable="billtype">
+            <reference local="billtype_key" foreign="key"/>
+        </foreign-key>
+        <foreign-key foreignTable="user">
+            <reference local="user_id" foreign="id"/>
+        </foreign-key>
+    </table>
+    
+    <table name="billtype" description="user's itinerary">
+        <column name="key" type="integer" primaryKey="true" autoIncrement="true" required="true" description="user Id and cookie"/>
+        <column name="user_id" type="BIGINT" required="true" description="user Id"/>
+        <column name="name" type="varchar" size="100" description="name"/>
+        <column name="description" type="clob" required="false" description="Description of the bill type"/>
+        <foreign-key foreignTable="user">
+            <reference local="user_id" foreign="id"/>
+        </foreign-key>
+    </table>
+    
+    <table name="purchase" description="A ride on a itinerary">
+        <column name="key" type="integer" primaryKey="true" autoIncrement="true" required="true" description="user Id and cookie"/>
+        <column name="user_id" type="BIGINT" required="true" description="user Id"/>
+        <column name="store" type="varchar" size="100" description="name"/>
+        <column name="cost" type="DOUBLE" required="true" description=""/>
+        <column name="date" type="timestamp" required="true" description="date time in line"/>
+        <column name="notes" type="clob" required="false" description="Description of the ride"/>
+        <column name="billtype_key" type="integer" required="true" description="Foreign Key for billtype"/>
+        <foreign-key foreignTable="billtype">
+            <reference local="billtype_key" foreign="key"/>
+        </foreign-key>
+        <foreign-key foreignTable="user">
+            <reference local="user_id" foreign="id"/>
+        </foreign-key>
+    </table>
+</database>
